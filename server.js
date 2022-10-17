@@ -25,7 +25,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-dotenv.config({ path: path.resolve(__dirname, './.env') });
+dotenv.config();
+// { path: path.resolve(__dirname, './.env') }
 const app = express();
 // app.use(bodyParser.json());
 app.use("/uploads",express.static(__dirname+"/uploads")) // it makes the possibility to connect the .env file data to server.js
