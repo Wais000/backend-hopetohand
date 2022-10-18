@@ -25,8 +25,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-dotenv.config();
-// { path: path.resolve(__dirname, './.env') }
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 const app = express();
 // app.use(bodyParser.json());
 app.use("/uploads",express.static(__dirname+"/uploads")) // it makes the possibility to connect the .env file data to server.js
@@ -36,7 +35,7 @@ app.use(express.json({ limit: "100mb", extended: true }));
 app.use(express.urlencoded({limit: "100mb" ,extended: true }));
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000;
 
 
 
@@ -52,10 +51,10 @@ app.use("/",upload.single("avatar"), userRoute );
 
 
 mongoose
-  .connect(process.env.CONNECTION_URL)
+  .connect("mongodb+srv://wais:Waisuddin2022@cluster0.rdpa7.mongodb.net/fullstackhopetohand?retryWrites=true&w=majority")
   .then(() =>
     app.listen(PORT, () =>
-      console.log(`Database connected and server running on port: `, PORT),
+      console.log(`Database connected and server running on port: , ${PORT}`),
     ),
   )
   .catch((error) => console.log(error));
