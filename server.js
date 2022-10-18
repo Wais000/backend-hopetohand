@@ -48,13 +48,21 @@ app.use((req, res, next) => {
 app.use("/",upload.single("avatar"), userRoute );
 
 
-
-
 mongoose
-  .connect("mongodb+srv://wais:Waisuddin2022@cluster0.rdpa7.mongodb.net/fullstackhopetohand?retryWrites=true&w=majority")
+  .connect(process.env.CONNECTION_URL)
   .then(() =>
     app.listen(PORT, () =>
-      console.log(`Database connected and server running on port: , ${PORT}`),
+      console.log(`Database connected and server running on port: `, PORT),
     ),
   )
   .catch((error) => console.log(error));
+
+
+// mongoose
+//   .connect("mongodb+srv://wais:Waisuddin2022@cluster0.rdpa7.mongodb.net/fullstackhopetohand?retryWrites=true&w=majority")
+//   .then(() =>
+//     app.listen(PORT, () =>
+//       console.log(`Database connected and server running on port: , ${PORT}`),
+//     ),
+//   )
+//   .catch((error) => console.log(error));
