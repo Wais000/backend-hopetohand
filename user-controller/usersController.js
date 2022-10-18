@@ -99,7 +99,7 @@ const avatar = new userAvatarModel({
 await avatar.save()
 const user= await userModel.findById(req.user.id);
 // user.avatar=`http://localhost:5000/uploads/${avatar.filename}`
-user.avatar=`https://vast-oasis-87088.herokuapp.com/uploads/${avatar.filename}`
+user.avatar=`https://hopetohands.vercel.app/uploads/${avatar.filename}`
 await user.save()
 console.log(avatar);
 res.send({user})
